@@ -1,6 +1,6 @@
 import React from "react";
-import '../App.css';
-import storiLogo from '../assets/Stori.png'
+import '../Home/Home.css';
+import storiLogo from '../../assets/Stori.png';
 
 function Home() {
 
