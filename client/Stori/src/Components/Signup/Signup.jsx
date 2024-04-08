@@ -17,11 +17,11 @@ function Signup(){
                     <p>Enter your email and password to access your account</p>
                 </div>
 
-                <form action="" className="userForm">
+                <form className="userForm">
                     <div className="input-field">
                         <label htmlFor="">Email </label>
                         <input
-                            type="text"
+                            type="email"
                             placeholder="Enter your email"
                             className="hello"
                         />
@@ -55,7 +55,7 @@ function Signup(){
                     </div>
 
                     <button type="submit" id="btn">
-                        LOGIN
+                        Sign up
                     </button>
                         <p>Already have an account?
                             <Link to='/login'>
