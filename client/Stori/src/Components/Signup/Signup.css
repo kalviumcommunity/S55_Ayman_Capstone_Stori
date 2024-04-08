@@ -1,0 +1,23 @@
+img{
+    width: 110%;
+}
+
+.page{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.second-page{
+    width: 50vw;
+    background-color: rgb(255, 255, 255);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2vw;
+    align-items: center;
+}
+
+.head{
+    margin-top: 5vw;
+    text-align: center;
+}
