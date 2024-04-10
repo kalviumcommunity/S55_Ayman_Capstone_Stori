@@ -3,6 +3,18 @@ const {UserModel} = require('./signupSchema')
 const router = express.Router();
 router.use(express.json());
 require('dotenv').config();
+const Joi = require("joi")
+
+
+
+const validateSchema = Joi.object({
+    "email": Joi.string().required(),
+    "username": Joi.string().required(),
+    "password": Joi.string().required(),
+    "confirm_password": Joi.string().required(),
+});
+
+
 
 router.post('/login',async(req,res)=>{
     try{
@@ -23,7 +35,13 @@ router.post('/login',async(req,res)=>{
 
 router.post('/signup',async(req,res)=>{
     try {
+        const{value,error} = validateSchema.validate(req.body)
+
+        if(error){
+            res.send(error.details)
+        }
         const user = await UserModel.create ({
+            
             email:req.body.email,
             username:req.body.username,
             password:req.body.password,
