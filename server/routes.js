@@ -3,9 +3,10 @@ const {UserModel} = require('./signupSchema')
 const router = express.Router();
 router.use(express.json());
 require('dotenv').config();
-const Joi = require("joi")
+const Joi = require("joi");
+const jwt = require('jsonwebtoken');
 
-
+const tok = process.env.ACCESS_TOKEN
 
 const validateSchema = Joi.object({
     "email": Joi.string().required(),
@@ -22,7 +23,7 @@ router.post('/login',async(req,res)=>{
         const user = await UserModel.findOne({ username, password });
 
         if(!user){
-            return res.status(401).json({error:'Invalid username or password'});
+            return res.status(201).json({error:'Invalid username or password'});
         }
         res.status(200).json({user});
        
@@ -52,6 +53,22 @@ router.post('/signup',async(req,res)=>{
         
     }catch(err){
         console.error(err);
+    }
+})
+
+
+router.post('/auth',async(req,res)=>{
+    try{
+        const user = {
+            username:req.body.username,
+            password : req.body.password
+        }
+        const token = jwt.sign(user,tok)
+        res.cookie('token',token,{maxAge:365*24*60*60*1000})
+        res.status(200).json(token)
+
+    }catch(err){
+        console.log(err)
     }
 })
 
