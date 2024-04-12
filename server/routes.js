@@ -23,7 +23,7 @@ router.post('/login',async(req,res)=>{
         const user = await UserModel.findOne({ username, password });
 
         if(!user){
-            return res.status(401).json({error:'Invalid username or password'});
+            return res.status(201).json({error:'Invalid username or password'});
         }
         res.status(200).json({user});
        
