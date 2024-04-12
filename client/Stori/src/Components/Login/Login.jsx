@@ -9,6 +9,12 @@ function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const setCookie = (name, value, days) => {
+        const expire = new Date();
+        expire.setTime(expire.getTime() + days * 24 * 60 * 60 * 1000)
+        document.cookie = name + '=' + value + ' ' + expire.toUTCString();
+    }
+
     const handleLogin = async (e) => {
         try {
             e.preventDefault();
@@ -25,8 +31,26 @@ function Login() {
 
                 const response = await axios.post(`https://s55-ayman-capstone-stori.onrender.com/login`, { username, password });
                 if (response.status === 200) {
+                    try {
+                        const res = axios.post('https://s55-ayman-capstone-stori.onrender.com/auth', { username, password })
+                            .then(res => {
+                                console.log(res.data)
+                                document.cookie = 'ACCESS_TOKEN=' + res.data
+                            })
+                    }
+                    catch (err) {
+                        console.log(err)
+                    }
+                    setCookie('username', username, 365)
+                    setCookie('password', password, 365)
+                    sessionStorage.setItem('login', true)
+                    sessionStorage.setItem('username', username)
                     alert('login succesful')
                     navigate("/");
+                }
+                else if (response.status === 401) {
+                    alert('Invalid user credentials')
+                    console.log(Error)
                 }
             }
         }
