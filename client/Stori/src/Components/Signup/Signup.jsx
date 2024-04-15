@@ -50,8 +50,8 @@ function Signup(){
 
             <div className="second-page">
                 <div className="head">
-                    <h1>Welcome Back</h1>
-                    <p>Enter your email and password to access your account</p>
+                    <h1>Join Us Today!</h1>
+                    <p>Enter your details to create your own account</p>
                 </div>
 
                 <form className="userForm" onSubmit={handleSignup}>

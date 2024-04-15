@@ -47,7 +47,7 @@ function Login() {
                         sessionStorage.setItem('login', true)
                         sessionStorage.setItem('username', username)
                         alert('login succesful')
-                        navigate("/");
+                        navigate("/mainpage");
                     }
                     else if(response.status == 201) {
                         alert('Invalid user credentials')
