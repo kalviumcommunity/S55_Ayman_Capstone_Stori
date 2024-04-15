@@ -10,19 +10,19 @@ function MainPage() {
         <div>
             <div className="sidebox">
                 <div id="sidebox1" className="sidebox">
-                    <div id="sideboxx1">YOUR PAGES</div>
+                    <div id="your-pages">YOUR PAGES</div>
                     <hr /><br /><br />See all
                     <hr />
-                    <div id="sideboxx2">
+                    <div id="update">
                         This Week
                     </div><br /><br />See more
                     <hr />
-                    <div id="sideboxx3">
+                    <div id="recent-posts">
                         Recent Posts
                     </div><br /><br />See more
                     <hr />
-                    <div id="sideboxx4">
-                        You haven't posted in this days
+                    <div id="profile">
+                        Profile
                     </div><br /><br /><br />See all
                 </div>
             </div>
