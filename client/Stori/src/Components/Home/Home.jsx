@@ -12,7 +12,7 @@ function Home() {
         try {
             const users = await axios.get(`http://localhost:3000/users`);
             setUserCount(users.data.length);
-            console.log(users);
+            
         } catch (error) {
             console.log(error);
         }

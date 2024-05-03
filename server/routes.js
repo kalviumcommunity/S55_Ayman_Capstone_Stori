@@ -78,7 +78,8 @@ router.get('/users',async(req,res)=>{
         res.send(users)
 
     } catch (error) {
-        console.error(error)        
+        console.error(error)
+        res.status(500).send('Server error')        
     }
 })
 
