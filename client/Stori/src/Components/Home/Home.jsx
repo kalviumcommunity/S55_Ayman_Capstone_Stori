@@ -10,7 +10,7 @@ function Home() {
 
     const handleUsers = async () => {
         try {
-            const users = await axios.get(`http://localhost:3000/users`);
+            const users = await axios.get(`https://s55-ayman-capstone-stori.onrender.com/users`);
             setUserCount(users.data.length);
             
         } catch (error) {
