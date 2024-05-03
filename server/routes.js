@@ -15,7 +15,7 @@ const validateSchema = Joi.object({
     "confirm_password": Joi.string().required(),
 });
 
-
+    
 
 router.post('/login',async(req,res)=>{
     try{
@@ -69,6 +69,17 @@ router.post('/auth',async(req,res)=>{
 
     }catch(err){
         console.log(err)
+    }
+})
+
+router.get('/users',async(req,res)=>{
+    try {
+        const users = await UserModel.find({})
+        res.send(users)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send('Server error')        
     }
 })
 

@@ -2,6 +2,7 @@ import Home from './Components/Home/Home'
 import { Route,Routes } from 'react-router-dom'
 import Login from './Components/Login/Login'
 import Signup from './Components/Signup/Signup'
+import MainPage from './Components/Main/MainPage'
 
 function App() {
   
