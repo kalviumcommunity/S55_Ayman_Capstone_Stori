@@ -1,13 +1,14 @@
 import { useNavigate, Link } from 'react-router-dom';
-
+import axios from 'axios';
 
 function MainPage() {
 
     const navigate = useNavigate();
-
+    
 
     return (
-        <div>
+        
+            <div>   
             <div className="sidebox">
                 <div id="sidebox1" className="sidebox">
                     <div id="your-pages">YOUR PAGES</div>
@@ -22,7 +23,6 @@ function MainPage() {
                     </div><br /><br />See more
                     <hr />
                     <div id="profile">
-                        Profile
                     </div><br /><br /><br />See all
                 </div>
             </div>
