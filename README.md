@@ -21,6 +21,9 @@ The primary goal of Stori is to provide a platform where individuals can freely 
 ## Front-end deployed link
 https://stori-cap.netlify.app/
 
+## Back-end deployed link
+https://s55-ayman-capstone-stori.onrender.com
+
 ## Daily Plan
 
 - **DAY 1** - Setting up a GitHub repo
