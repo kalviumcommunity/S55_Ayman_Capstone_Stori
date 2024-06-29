@@ -4,8 +4,12 @@ meta {
   seq: 2
 }
 
-post {
-  url: http://localhost:3000/signup
-  body: none
-  auth: none
+try {
+  post {
+    url: http://localhost:3000/signup
+    body: none
+    auth: none
+  }
+} catch (error) {
+  console.log(error)
 }
