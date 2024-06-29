@@ -15,6 +15,37 @@ function Login() {
         document.cookie = name + '=' + value + ' ' + expire.toUTCString();
     }
 
+    useEffect(() => {
+        const initGoogleSignIn = () => {
+            window.gapi.load('auth2', () => {
+                const auth2 = window.gapi.auth2.init({
+                    client_id: '16286531538-bmgd6953aqs4km89rdrvbsvjofo0o8db.apps.googleusercontent.com',
+                    scope: 'email',
+                });
+                setGoogleAuth(auth2); // Store Google Auth instance in state
+            });
+        };
+
+        initGoogleSignIn();
+    }, []);
+
+    const handleGoogleLogin = async () => {
+        try {
+            const googleUser = await googleAuth.signIn();
+            const profile = googleUser.getBasicProfile();
+            const email = profile.getEmail();
+            console.log('Logged in with Google:', email);
+
+        } catch (error) {
+            if (error.error === 'popup_closed_by_user') {
+                console.log('Google sign-in popup was closed by the user.');
+                navigate('/');
+            } else {
+                console.error('Google login failed:', error);
+            }
+        }
+    };
+
     const handleLogin = async (e) => {
         e.preventDefault();
         if (!username || !password) {
