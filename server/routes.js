@@ -5,6 +5,7 @@ router.use(express.json());
 require('dotenv').config();
 const Joi = require("joi");
 const jwt = require('jsonwebtoken');
+const {Post} = require('./postSchema');
 
 const tok = process.env.ACCESS_TOKEN
 
@@ -15,7 +16,27 @@ const validateSchema = Joi.object({
     "confirm_password": Joi.string().required(),
 });
 
-    
+
+router.post('/posts', async (req, res) => {
+    try {
+      const { content } = req.body;
+      const newPost = new Post({ content });
+      await newPost.save();
+      res.status(201).json(newPost);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to create post' });
+    }
+  });
+
+
+  router.get('/posts', async (req, res) => {
+    try {
+      const posts = await Post.find().sort({ createdAt: -1 });
+      res.status(200).json(posts);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch posts' });
+    }
+  });
 
 router.post('/login',async(req,res)=>{
     try{
