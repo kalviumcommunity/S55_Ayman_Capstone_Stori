@@ -104,4 +104,40 @@ router.get('/users',async(req,res)=>{
     }
 })
 
+// Update a post by ID
+router.put('/posts/:id', async (req, res) => {
+    try {
+      const postId = req.params.id;  
+      const { content } = req.body;
+  
+      const updatedPost = await Post.findByIdAndUpdate(postId, { content }, { new: true });
+  
+      if (!updatedPost) {
+        return res.status(404).json({ error: 'Post not found' });
+      }
+  
+      res.status(200).json(updatedPost);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to update post' });
+    }
+  });
+  
+  // Delete a post by ID
+  router.delete('/posts/:id', async (req, res) => {
+    try {
+      const postId = req.params.id;
+  
+      const deletedPost = await Post.findByIdAndDelete(postId);
+  
+      if (!deletedPost) {
+        return res.status(404).json({ error: 'Post not found' });
+      }
+  
+      res.status(200).json({ message: 'Post deleted successfully' });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to delete post' });
+    }
+  });
+  
+
 module.exports = router
