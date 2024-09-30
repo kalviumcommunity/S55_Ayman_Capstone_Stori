@@ -52,7 +52,19 @@ function MainPage() {
             setPosts(posts.map(post => post._id === postId ? response.data : post)); // Update the post in the state
             setEditingPostId(null); // Exit edit mode
         } catch (error) {
-            console.error('Error updating post:', error);
+            if (error.response) {
+                const { status, data } = error.response;
+    
+                if (status === 404) {
+                    console.error('Error: Post not found.');
+                } else if (status === 400) {
+                    console.error(`Error: ${data.error || 'Invalid content'}`);
+                } else {
+                    console.error(`Error: ${data.error || 'Failed to update post'}`);
+                }
+            } else {
+                console.error('Error updating post:', error.message);
+            }
         }
     };
 
